@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /contacto.php
+
+Sitemap: https://indupest.com.mx/sitemap.xml

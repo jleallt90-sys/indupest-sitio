@@ -1,0 +1,27 @@
+# Configuración para Hostinger (Apache/LiteSpeed). Se copia a la raíz del sitio al compilar.
+RewriteEngine On
+
+# Forzar HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www -> dominio sin www (URL canónica: https://indupest.com.mx)
+RewriteCond %{HTTP_HOST} ^www\.indupest\.com\.mx$ [NC]
+RewriteRule ^ https://indupest.com.mx%{REQUEST_URI} [L,R=301]
+
+# Direcciones del sitio anterior -> páginas nuevas (conserva el posicionamiento en Google)
+RewriteRule ^servicio-control-plagas-y-fumigacion/?$ /servicios/ [L,R=301]
+RewriteRule ^contacto-control-de-plagas/?$ /contacto/ [L,R=301]
+RewriteRule ^politica-de-privacidad/?$ /aviso-de-privacidad/ [L,R=301]
+RewriteRule ^control-de-plagas-industrial-en-el-bajio-para-plantas-manufactureras-y-automotrices/?$ /blog/control-de-plagas-industrial-en-el-bajio/ [L,R=301]
+RewriteRule ^control-de-plagas-en-la-industria-manufacturera-del-bajio-un-reto-clave-para-la-productividad/?$ /blog/control-de-plagas-industrial-en-el-bajio/ [L,R=301]
+RewriteRule ^rotacion-de-plaguicidas-urbanos-la-clave-para-un-control-efectivo-y-seguro/?$ /blog/rotacion-de-plaguicidas-urbanos/ [L,R=301]
+RewriteRule ^temporalidad-de-las-plagas-urbanas-en-el-bajio-cuando-y-por-que-aumentan/?$ /blog/temporalidad-de-las-plagas-en-el-bajio/ [L,R=301]
+RewriteRule ^prevencion-de-dengue-zika-y-chikungunya-en-comercios-e-industrias-del-bajio/?$ /blog/prevencion-de-dengue-zika-y-chikungunya/ [L,R=301]
+RewriteRule ^el-problema-de-los-roedores-en-zonas-urbanas-del-bajio-un-riesgo-creciente-para-hogares-y-comercios/?$ /blog/roedores-en-zonas-urbanas-del-bajio/ [L,R=301]
+
+# /nosotros y /plagas existían sin diagonal final: se agrega
+RewriteRule ^(nosotros|plagas)$ /$1/ [L,R=301]
+
+# Página 404 propia
+ErrorDocument 404 /404.html
